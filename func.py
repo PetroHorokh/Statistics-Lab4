@@ -3,11 +3,25 @@ from const import *
 import scipy.stats as stats
 import statsmodels.api as sm
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def calculate_estimation(a, ni, i):
     data = i + (a + ni) / a * (random.uniform(0, 1) - 1 / 2)
     return list(data)
+
+
+def correlation_field(x, y):
+    correlation_coefficient, _ = stats.pearsonr(x, y)
+    print(f"Pearson's correlation coefficient: {correlation_coefficient}")
+
+    plt.scatter(x, y, label='Data')
+    plt.plot(np.unique(x), np.poly1d(np.polyfit(x, y, 1))(np.unique(x)), color='red', label='Line')
+    plt.title('Scatter diagram and linear relationship')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.legend()
+    plt.show()
 
 
 def build_regressive_model(x, y):

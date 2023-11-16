@@ -9,14 +9,12 @@ Pi = data['Pi']
 Qi = data['Qi']
 
 x = f.calculate_estimation(30, Ni, Qi)
-print("Xi:")
-f.array_print(x)
 
 X = sm.add_constant(x)
 
 Y = f.calculate_estimation(20, Ni, Pi)
-print("Yi:")
-f.array_print(Y)
+
+f.correlation_field(x,Y)
 
 model = f.build_regressive_model(X, Y)
 
